@@ -270,6 +270,7 @@ fi
 if "$slot_empty"; then
   ln -s "${target_dir}/t3" "${bin_dir}/t3" || fail "could not link ${bin_dir}/t3; something else was created there."
 else
+  # Known race, accepted: a file written here after the ownership check above is overwritten.
   ln -sfn "${target_dir}/t3" "${bin_dir}/t3"
 fi
 # Pruning keeps what this launcher points at; a background service cannot see bin_dir otherwise.
